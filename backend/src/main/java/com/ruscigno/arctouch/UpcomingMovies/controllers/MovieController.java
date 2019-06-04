@@ -4,6 +4,7 @@ import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,13 +23,20 @@ class MovieController {
     @Value("${tmdb_upcoming_url}")
     private String upcomingURL;
 
-    private RestTemplate restTemplate = new RestTemplate();
+    @Value("${tmdb_details_url}")
+    private String detailsURL;
 
     @ResponseBody
     @RequestMapping("/upcoming")
-    public String upcomingMovies2(@RequestParam(value = "page", defaultValue = "1") int page) {
+    public String upcomingMovies(@RequestParam(value = "page", defaultValue = "1") int page) {
         RestTemplate restTemplate = new RestTemplate();
-        String quote = restTemplate.getForObject(String.format(upcomingURL, apiKey, page), String.class);
-        return quote;
+        return restTemplate.getForObject(String.format(upcomingURL, apiKey, page), String.class);
+    }
+
+    @ResponseBody
+    @RequestMapping("/details/{movie_id}")
+    public String movieDetails(@PathVariable("movie_id") Long movieId) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(String.format(detailsURL, movieId, apiKey), String.class);
     }
 }
