@@ -26,6 +26,9 @@ class MovieController {
     @Value("${tmdb_details_url}")
     private String detailsURL;
 
+    @Value("${tmdb_search_url}")
+    private String searchURL;
+
     @ResponseBody
     @RequestMapping("/upcoming")
     public String upcomingMovies(@RequestParam(value = "page", defaultValue = "1") int page) {
@@ -38,5 +41,15 @@ class MovieController {
     public String movieDetails(@PathVariable("movie_id") Long movieId) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(String.format(detailsURL, movieId, apiKey), String.class);
+    }
+
+    @ResponseBody
+    @RequestMapping("/search")
+    public String search(
+        @RequestParam(value = "query", required = true) String query, 
+        @RequestParam(value = "page", defaultValue = "1") int page) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(String.format(searchURL, query, apiKey, page), String.class);
     }
 }
