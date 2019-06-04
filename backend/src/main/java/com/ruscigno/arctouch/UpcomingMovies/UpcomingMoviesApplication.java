@@ -1,13 +1,13 @@
-package com.ruscigno.UpcomingMoviesWebAppbackend;
+package com.ruscigno.arctouch.UpcomingMovies;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UpcomingMoviesWebAppBackendApplication {
+public class UpcomingMoviesApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(UpcomingMoviesWebAppBackendApplication.class, args);
+		SpringApplication.run(UpcomingMoviesApplication.class, args);
 	}
 
 }
