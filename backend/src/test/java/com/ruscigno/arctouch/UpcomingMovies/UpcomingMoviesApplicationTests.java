@@ -1,4 +1,4 @@
-package com.ruscigno.arctouch.UpcomingMovies;
+package com.ruscigno.arctouch.upcomingMovies;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
