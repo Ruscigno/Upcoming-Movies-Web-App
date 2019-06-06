@@ -1,9 +1,9 @@
 package com.ruscigno.arctouch.upcomingMovies.deserializers;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,7 +19,7 @@ public class GenreDeserializer extends JsonDeserializer<String> {
 
 	private static final String UNKNOWN_GENRE = "Unknown genre";
 
-	private List<String> result = new ArrayList<>();
+	private Set<String> result = new HashSet<>();
 
 	@Override
 	public String deserialize(JsonParser parser, DeserializationContext ctxt)

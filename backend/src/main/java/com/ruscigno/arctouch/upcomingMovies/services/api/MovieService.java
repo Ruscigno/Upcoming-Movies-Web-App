@@ -8,6 +8,6 @@ public interface MovieService {
 
 	String getMovieDetails(Long movieId);
 
-	String findByText(String query, int page);
+	UpcomingMoviesTMDbDTO findByText(String query, int page);
     
 }

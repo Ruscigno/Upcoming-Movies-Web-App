@@ -29,15 +29,14 @@ class MovieController {
 
 	@ResponseBody
 	@RequestMapping("/details/{movie_id}")
-	public String movieDetails(@PathVariable("movie_id") Long movieId) {
-		return movieService.getMovieDetails(movieId);
+	public ResponseEntity<String> movieDetails(@PathVariable("movie_id") Long movieId) {
+		return ResponseEntity.ok(movieService.getMovieDetails(movieId));
 	}
 
 	@ResponseBody
 	@RequestMapping("/search")
-	public String search(@RequestParam(value = "query", required = true) String query,
+	public ResponseEntity<UpcomingMoviesTMDbDTO> search(@RequestParam(value = "query", required = true) String query,
 			@RequestParam(value = "page", defaultValue = "0") int page) {
-
-		return movieService.findByText(query, page + 1);
+		return ResponseEntity.ok(movieService.findByText(query, page + 1));
 	}
 }
