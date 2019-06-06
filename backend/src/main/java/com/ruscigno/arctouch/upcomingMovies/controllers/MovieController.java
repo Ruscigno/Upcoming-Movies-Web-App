@@ -24,7 +24,8 @@ class MovieController {
 	@GetMapping(value = "/upcoming")
 	public ResponseEntity<UpcomingMoviesTMDbDTO> upcomingMovies(
 			@RequestParam(value = "page", defaultValue = "0") int page) {
-		return ResponseEntity.ok(movieService.getUpcomingMovies(page + 1));
+		UpcomingMoviesTMDbDTO novo = movieService.getUpcomingMovies(page + 1); 
+		return ResponseEntity.ok(novo);
 	}
 
 	@ResponseBody

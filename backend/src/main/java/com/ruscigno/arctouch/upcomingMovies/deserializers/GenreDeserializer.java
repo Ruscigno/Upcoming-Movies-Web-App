@@ -25,6 +25,7 @@ public class GenreDeserializer extends JsonDeserializer<String> {
 	public String deserialize(JsonParser parser, DeserializationContext ctxt)
 			throws IOException, JsonProcessingException {
 
+	    result = new HashSet<>();
 		ObjectCodec codec = parser.getCodec();
 		TreeNode node = codec.readTree(parser);
 		for (int i = 0; i < node.size(); i++) {

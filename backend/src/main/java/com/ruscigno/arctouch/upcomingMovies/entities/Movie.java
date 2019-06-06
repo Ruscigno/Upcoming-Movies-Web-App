@@ -1,7 +1,6 @@
 package com.ruscigno.arctouch.upcomingMovies.entities;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -32,5 +31,5 @@ public class Movie implements Serializable {
     private String backdrop_path;
 //    private boolean adult;
     private String overview;
-    private Date release_date;
+    private String release_date;
 }
