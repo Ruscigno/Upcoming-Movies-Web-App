@@ -1,13 +1,12 @@
 package com.ruscigno.arctouch.upcomingMovies.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.ruscigno.arctouch.upcomingMovies.deserializers.GenreDeserializer;
+import com.ruscigno.arctouch.upcomingMovies.deserializers.ImageAddressDeserializer;
 
 import lombok.Data;
 
@@ -23,11 +22,13 @@ public class Movie implements Serializable {
     private double vote_average;
     private String title;
     private double popularity;
+    @JsonDeserialize(using = ImageAddressDeserializer.class)
     private String poster_path;
     private String original_language;
     private String original_title;
     @JsonDeserialize(using = GenreDeserializer.class)
-    private List<String> genre_ids = new ArrayList<>();
+    private String genre_ids;
+    @JsonDeserialize(using = ImageAddressDeserializer.class)
     private String backdrop_path;
     private boolean adult;
     private String overview;

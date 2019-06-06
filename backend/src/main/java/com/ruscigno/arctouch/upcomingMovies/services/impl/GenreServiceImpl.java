@@ -14,10 +14,10 @@ import com.ruscigno.arctouch.upcomingMovies.services.api.GenreService;
 @Service
 public class GenreServiceImpl implements GenreService {
 
-	@Value("tmdb_genre_url")
+	@Value("${tmdb_genre_url}")
 	private String genreURL;
 
-	@Value("api_key")
+	@Value("${api_key}")
 	private String apiKey;
 
 	@Autowired
@@ -26,7 +26,6 @@ public class GenreServiceImpl implements GenreService {
 	@Override
 	public void populate() {
 		genres.getGenres().clear();
-
 		RestTemplate restTemplate = new RestTemplate();
 		genres = restTemplate.getForObject(String.format(genreURL, apiKey), GenreList.class);
 	}

@@ -11,23 +11,19 @@ import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.core.TreeNode;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.ruscigno.arctouch.upcomingMovies.ApplicationContextProvider;
 import com.ruscigno.arctouch.upcomingMovies.entities.Genre;
 import com.ruscigno.arctouch.upcomingMovies.services.api.GenreService;
-import com.ruscigno.arctouch.upcomingMovies.services.impl.GenreServiceImpl;
 
 public class GenreDeserializer extends JsonDeserializer<String> {
 
 	private static final String UNKNOWN_GENRE = "Unknown genre";
-
-	private GenreService genreService;
 
 	private List<String> result = new ArrayList<>();
 
 	@Override
 	public String deserialize(JsonParser parser, DeserializationContext ctxt)
 			throws IOException, JsonProcessingException {
-
-		genreService = new GenreServiceImpl();
 
 		ObjectCodec codec = parser.getCodec();
 		TreeNode node = codec.readTree(parser);
@@ -37,10 +33,12 @@ public class GenreDeserializer extends JsonDeserializer<String> {
 		if (result.isEmpty())
 			return UNKNOWN_GENRE;
 
-		return result.toString();
+		return String.join(", ", result);
 	}
 
 	private String findById(String id) {
+		GenreService genreService = ApplicationContextProvider.getAppContext().getBean(GenreService.class);
+
 		Optional<Genre> result = genreService.findById(Integer.parseInt(id));
 		if (result.isEmpty())
 			return UNKNOWN_GENRE;
